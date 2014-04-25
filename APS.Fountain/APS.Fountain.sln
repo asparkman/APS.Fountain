@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Fountain", "APS.Fountain.csproj", "{0CE686B1-6B7D-42AF-9181-D10964607052}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data", "..\APS.Data\APS.Data.csproj", "{6DA06C45-44D0-41B7-9448-019A909D8F48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data.Tests", "APS.Data.Tests\APS.Data.Tests.csproj", "{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CE686B1-6B7D-42AF-9181-D10964607052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CE686B1-6B7D-42AF-9181-D10964607052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CE686B1-6B7D-42AF-9181-D10964607052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CE686B1-6B7D-42AF-9181-D10964607052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DA06C45-44D0-41B7-9448-019A909D8F48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DA06C45-44D0-41B7-9448-019A909D8F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DA06C45-44D0-41B7-9448-019A909D8F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DA06C45-44D0-41B7-9448-019A909D8F48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
