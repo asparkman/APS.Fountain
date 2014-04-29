@@ -21,8 +21,8 @@ namespace APS.Data.Tests
 
             Assert.IsNotNull(positioned);
 
-            var byte2 = (byte)(target.Pin << 4 + target.NoteLength >> 2);
-            var byte3 = (byte)((target.NoteLength % 4) << 6 + target.RepeatLength);
+            var byte2 = (byte)((target.Pin << 4) + (target.NoteLength >> 2));
+            var byte3 = (byte)(((target.NoteLength % 4) << 6) + target.RepeatLength);
 
             Assert.AreEqual(byte2, positioned[2]);
             Assert.AreEqual(byte3, positioned[3]);

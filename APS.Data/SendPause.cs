@@ -13,8 +13,8 @@ namespace APS.Data
         {
             var result = GetBasePositionArray();
 
-            result[2] = (byte)(Pin << 4 + NoteLength >> 2);
-            result[3] = (byte)((NoteLength % 4) << 6 + RepeatLength);
+            result[2] = (byte)((Pin << 4) + (NoteLength >> 2));
+            result[3] = (byte)(((NoteLength % 4) << 6) + RepeatLength);
 
             return result;
         }
