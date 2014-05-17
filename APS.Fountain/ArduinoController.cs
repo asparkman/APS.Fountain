@@ -17,7 +17,7 @@ namespace APS.Fountain
             StreamWriter = new StreamWriter("t.txt", false, Encoding.ASCII);
         }
 
-        public static int SLEEP_CONSTANT = 100;
+        public static int SLEEP_CONSTANT = 20;
 
         SerialPort currentPort;
         bool portFound;
@@ -35,6 +35,7 @@ namespace APS.Fountain
                     if (DetectArduino())
                     {
                         portFound = true;
+                        Console.WriteLine("Port found: {0}", port);
                         break;
                     }
                     else
@@ -50,13 +51,14 @@ namespace APS.Fountain
 
             return portFound;
         }
-        public bool DoCommand(IBytable bytable, string message = null)
+        public bool DoCommand(object bytable)
         {
-            var bytes = bytable.Position();
-            bytable.Escape(bytes);
-            return DoCommand(bytes, message);
+            //var bytes = bytable.Position();
+            //bytable.Escape(bytes);
+            //var checksum = bytable.Checksum();
+            return DoCommand(null, Encoding.ASCII.GetString(null));
         }
-        public bool DoCommand(byte[] bytes, string message = null)
+        protected bool DoCommand(byte[] bytes, string message = null)
         {
             try
             {
@@ -113,11 +115,9 @@ namespace APS.Fountain
         }
         private bool DetectArduino()
         {
-            var identify = new Identify();
-            var bytes = identify.Position();
-            identify.Escape(bytes);
+            //var identify = new Identify();
 
-            return DoCommand(bytes, "HELLO FROM ARDUINO");
+            return DoCommand(null);
         }
 
         public void Dispose()

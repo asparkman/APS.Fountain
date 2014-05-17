@@ -40,16 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseMessage.cs" />
-    <Compile Include="ByteExtensions.cs" />
-    <Compile Include="IBytable.cs" />
-    <Compile Include="Identify.cs" />
-    <Compile Include="MessageType.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Messages\Rx\Ack.cs" />
+    <Compile Include="Messages\Rx\Identify.cs" />
+    <Compile Include="Messages\Tx\Identify.cs" />
+    <Compile Include="Messages\Tx\Note.cs" />
+    <Compile Include="Messages\Tx\NoToneTime.cs" />
+    <Compile Include="Messages\Tx\Pause.cs" />
+    <Compile Include="Messages\Tx\ToneTime.cs" />
+    <Compile Include="RxField.cs" />
+    <Compile Include="RxMessage.cs" />
+    <Compile Include="TxField.cs" />
+    <Compile Include="TxMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendNote.cs" />
-    <Compile Include="SendNoToneTime.cs" />
-    <Compile Include="SendPause.cs" />
-    <Compile Include="SendToneTime.cs" />
+    <Compile Include="RxType.cs" />
+    <Compile Include="TxType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

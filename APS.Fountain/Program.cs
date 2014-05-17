@@ -1,68 +1,32 @@
-﻿using APS.Data;
+﻿/******************************************************************************\
+* Copyright (C) 2012-2013 Leap Motion, Inc. All rights reserved.               *
+* Leap Motion proprietary and confidential. Not for distribution.              *
+* Use subject to the terms of the Leap Motion SDK Agreement available at       *
+* https://developer.leapmotion.com/sdk_agreement, or another agreement         *
+* between Leap Motion and you, your company or other organization.             *
+\******************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using Leap;
+using System.Timers;
+using APS.Data;
 
 namespace APS.Fountain
 {
-    class Program
+    public class Sample
     {
-        static void Main(string[] args)
+        public static LeapListener Listener { get; set; }
+        public static DateTime Start { get; set; }
+        public static DateTime LastStart { get; set; }
+        public static TimeSpan Max { get; set; }
+        public static TimeSpan Min { get; set; }
+
+        public static void Main()
         {
-            using(var controller = new ArduinoController())
+            using(var coord = new Coordinator())
             {
-                if(controller.SetComPort())
-                {
-                    var sendToneTime = new SendToneTime()
-                    {
-                        Milliseconds = 100
-                    };
-                    var sendNoToneTime = new SendNoToneTime()
-                    {
-                        Milliseconds = 25
-                    };
-                    controller.DoCommand(sendToneTime, "MT_SEND_TONE_TIME");
-                    controller.DoCommand(sendNoToneTime, "MT_SEND_NO_TONE_TIME");
-
-                    var notes = new int[] { -1, -1, -2, -2, -3, -3 };
-                    var rand = new Random(5);
-                    ArduinoController.SLEEP_CONSTANT = 100;
-                    while (true)
-                    {
-                        sendToneTime = new SendToneTime()
-                        {
-                            Milliseconds = (ushort)(100)
-                        };
-                        sendNoToneTime = new SendNoToneTime()
-                        {
-                            Milliseconds = (ushort)(25)
-                        };
-                        controller.DoCommand(sendToneTime, "MT_SEND_TONE_TIME");
-                        controller.DoCommand(sendNoToneTime, "MT_SEND_NO_TONE_TIME");
-
-                        foreach (var note in notes)
-                        {
-                            var sendNote = new SendNote();
-                            sendNote.Pin = 8;
-                            sendNote.NoteLength = 1;
-                            sendNote.RepeatLength = 5;
-                            sendNote.Note = 3 + 57;
-
-                            controller.DoCommand(sendNote, "MT_SEND_NOTE");
-                            var noteTime = sendNote.NoteLength * sendToneTime.Milliseconds + (sendNote.NoteLength - 1) * sendNoToneTime.Milliseconds;
-                            var repeatTime = sendNote.RepeatLength * noteTime + (sendNote.RepeatLength - 1) * sendNoToneTime.Milliseconds;
-                            Thread.Sleep(repeatTime);
-                            Console.WriteLine("SLEEP_TIME = {0}", repeatTime);
-                        }
-                    }
-
-                }
+                coord.Run();
             }
-
-            Console.ReadKey();
         }
     }
 }

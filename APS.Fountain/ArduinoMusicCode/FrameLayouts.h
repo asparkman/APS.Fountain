@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-int toneTime = 100;
+int toneTime = 75;
 int noToneTime = 25;
 
 const int MAX_FRAME_SIZE = 6;
@@ -17,6 +17,8 @@ const byte MT_SEND_NOTE = 2;
 const byte MT_SEND_NO_TONE_TIME = 3;
 const byte MT_SEND_PAUSE = 4;
 const byte MT_SEND_TONE_TIME = 5;
+
+char writeBuffer[3] = { START_CHAR, (char) 0, END_CHAR };
 
 struct Identify {
 };
@@ -86,4 +88,45 @@ void read_SendToneTime(char lastRead[], int length, SendToneTime &val) {
 void read_SendNoToneTime(char lastRead[], int length, SendNoToneTime &val) {
 	val.milliseconds = (((unsigned int)lastRead[2]) << 8) + ((byte)lastRead[2]);
 }
+
+void write_Identify_Ack(Identify &val) {
+        writeBuffer[1] = (MT_IDENTIFY << 5);
+        
+        Serial.print(writeBuffer);
+}
+
+void write_SendNote_Ack(SendNote &val) {
+        writeBuffer[1] = ((byte)MT_SEND_NOTE << 5)
+              + (val.pin % 2)
+              + ((val.note % 2) << 1)
+              + ((val.noteLength % 2) << 2)
+              + ((val.repeatLength % 2) << 3);
+        
+        Serial.print(writeBuffer);
+}
+
+void write_SendPause_Ack(SendPause &val) {
+        writeBuffer[1] = (MT_SEND_PAUSE << 5)
+              + (val.pin % 2)
+              + ((val.noteLength % 2) << 1)
+              + ((val.repeatLength % 2) << 2);
+        
+        Serial.print(writeBuffer);
+}
+
+void write_SendToneTime_Ack(SendToneTime &val) {
+        writeBuffer[1] = (MT_SEND_TONE_TIME << 5)
+              + (val.milliseconds % 2);
+        
+        Serial.print(writeBuffer);
+}
+
+void write_SendNoToneTime_Ack(SendNoToneTime &val) {
+        writeBuffer[1] = (MT_SEND_NO_TONE_TIME << 5)
+              + (val.milliseconds % 2);
+        
+        Serial.print(writeBuffer);
+}
+
+
 #endif
