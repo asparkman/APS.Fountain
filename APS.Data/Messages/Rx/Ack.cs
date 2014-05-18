@@ -8,6 +8,16 @@ namespace APS.Data.Messages.Rx
 {
     public class Ack : RxMessage
     {
+        public Ack()
+            : base()
+        {
+        }
+
+        public Ack(byte[] vals)
+            : base(vals)
+        {
+        }
+
         public override RxType Type { get { return RxType.ACK; } }
         public override byte Size { get { return 1; } }
 

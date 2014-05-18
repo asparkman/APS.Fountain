@@ -8,6 +8,16 @@ namespace APS.Data.Messages.Rx
 {
     public class Identify : RxMessage
     {
+        public Identify()
+            : base()
+        {
+        }
+
+        public Identify(byte[] vals)
+            : base(vals)
+        {
+        }
+
         public override RxType Type { get { return RxType.IDENTIFY; } }
         public override byte Size { get { return 3; } }
 

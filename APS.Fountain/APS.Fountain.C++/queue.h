@@ -9,7 +9,7 @@ class queue
 public:
 	queue(unsigned int size, const unsigned int maxActualCount = 0);
 	~queue();
-
+	
 	TEMPLATE_CLASS popHead();
 
 	TEMPLATE_CLASS peekHead();

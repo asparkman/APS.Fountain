@@ -8,6 +8,16 @@ namespace APS.Data.Messages.Tx
 {
     public class Identify : TxMessage
     {
+        public Identify()
+            : base()
+        {
+        }
+
+        public Identify(byte[] vals)
+            : base(vals)
+        {
+        }
+
         public override TxType Type { get { return TxType.IDENTIFY; } }
         public override byte Size { get { return 3; } }
 

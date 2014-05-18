@@ -8,6 +8,16 @@ namespace APS.Data.Messages.Tx
 {
     public class Note : TxMessage
     {
+        public Note()
+            : base()
+        {
+        }
+
+        public Note(byte[] vals)
+            : base(vals)
+        {
+        }
+
         public override TxType Type { get { return TxType.NOTE; } }
         public override byte Size { get { return 5; } }
 

@@ -8,6 +8,16 @@ namespace APS.Data.Messages.Tx
 {
     public class Pause : TxMessage
     {
+        public Pause()
+            : base()
+        {
+        }
+
+        public Pause(byte[] vals)
+            : base(vals)
+        {
+        }
+
         public override TxType Type { get { return TxType.PAUSE; } }
         public override byte Size { get { return 4; } }
 

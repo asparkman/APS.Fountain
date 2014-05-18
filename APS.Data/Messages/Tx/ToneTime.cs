@@ -8,6 +8,16 @@ namespace APS.Data.Messages.Tx
 {
     public class ToneTime : TxMessage
     {
+        public ToneTime()
+            : base()
+        {
+        }
+
+        public ToneTime(byte[] vals)
+            : base(vals)
+        {
+        }
+
         public override TxType Type { get { return TxType.TONE_TIME; } }
         public override byte Size { get { return 3; } }
 

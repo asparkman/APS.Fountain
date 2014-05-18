@@ -21,25 +21,18 @@ namespace APS.Data
             _Bytes[_Bytes.Length - 1] = (byte)_END;
         }
 
+        public Message(byte[] vals)
+        {
+            _Bytes = (byte[]) vals.Clone();
+        }
+
         public abstract byte Size { get; }
         public abstract byte Sequence { get; set; }
 
         public abstract TTypeEnum Type { get; }
-        private byte[] _Bytes { get; set; }
-        public byte[] Bytes { get { return _Bytes; } }
-        public byte this[TFieldEnum index]
-        {
-            get
-            {
-                byte result = _Bytes[index.ToInt32(CultureInfo.CurrentCulture)];
-
-                return result;
-            }
-            set
-            {
-                _Bytes[index.ToInt32(CultureInfo.CurrentCulture)] = value;
-            }
-        }
+        protected byte[] _Bytes { get; set; }
+        public byte[] Bytes { get { return (byte[]) _Bytes.Clone(); } }
+        public abstract byte this[TFieldEnum index] { get; set; }
 
         public object CloneTo(Message<TTypeEnum, TFieldEnum> message)
         {
