@@ -8,6 +8,7 @@ namespace APS.Data.Messages.Tx
 {
     public class Identify : TxMessage
     {
+        #pragma warning disable 1591
         public Identify()
             : base()
         {
@@ -28,5 +29,6 @@ namespace APS.Data.Messages.Tx
         {
             return CloneTo(new Identify());
         }
+        #pragma warning restore 1591
     }
 }

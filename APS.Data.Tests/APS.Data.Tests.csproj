@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,7 +60,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\APS.Data\APS.Data.csproj">
+    <ProjectReference Include="..\APS.Data\APS.Data.csproj">
       <Project>{6da06c45-44d0-41b7-9448-019a909d8f48}</Project>
       <Name>APS.Data</Name>
     </ProjectReference>

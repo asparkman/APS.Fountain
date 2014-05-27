@@ -8,6 +8,7 @@ namespace APS.Data.Messages.Tx
 {
     public class ToneTime : TxMessage
     {
+        #pragma warning disable 1591
         public ToneTime()
             : base()
         {
@@ -44,5 +45,6 @@ namespace APS.Data.Messages.Tx
         {
             return CloneTo(new ToneTime());
         }
+        #pragma warning restore 1591
     }
 }

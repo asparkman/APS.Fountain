@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace APS.Data
 {
+    /// <summary>
+    /// Represents a message sent to the Arduino.
+    /// </summary>
     public abstract class TxMessage : Message<TxType, TxField>
     {
+        /// <summary>
+        /// Creates a bare bones message that may be sent to the Arduino.
+        /// </summary>
         public TxMessage()
             : base()
         {
@@ -17,11 +23,23 @@ namespace APS.Data
             this[TxField.ESCAPE] = (byte)(3 << 6);
         }
 
+        /// <summary>
+        /// Creates a representation of a message sent to the Arduino, given 
+        /// the raw bytes passed to it.
+        /// </summary>
+        /// <param name="vals">The raw bytes.</param>
         public TxMessage(byte[] vals)
             : base(vals)
         {
         }
 
+        /// <summary>
+        /// Gets or sets the raw byte value for the given transfer message 
+        /// field.
+        /// </summary>
+        /// <param name="index">The given transfer message field.</param>
+        /// <returns>The raw byte value for the given transfer message field.
+        /// </returns>
         public override byte this[TxField index]
         {
             get
@@ -62,6 +80,10 @@ namespace APS.Data
             }
         }
 
+        /// <summary>
+        /// Gets or sets the sequence according to the sliding window protocol 
+        /// being used to communicate the message.
+        /// </summary>
         public override byte Sequence
         {
             get

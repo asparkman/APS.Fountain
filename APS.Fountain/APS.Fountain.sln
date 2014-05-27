@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Fountain", "APS.Fountai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data", "..\APS.Data\APS.Data.csproj", "{6DA06C45-44D0-41B7-9448-019A909D8F48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data.Tests", "APS.Data.Tests\APS.Data.Tests.csproj", "{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data.Tests", "..\APS.Data.Tests\APS.Data.Tests.csproj", "{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Arduino", "..\APS.Arduino\APS.Arduino.csproj", "{74E1864A-886A-406B-A552-7916A5125836}"
 EndProject
@@ -84,6 +84,7 @@ Global
 		{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}.Debug|Win32.ActiveCfg = Debug|Any CPU
 		{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}.Debug|x64.Build.0 = Debug|Any CPU
 		{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}.Release|Any CPU.Build.0 = Release|Any CPU
 		{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU

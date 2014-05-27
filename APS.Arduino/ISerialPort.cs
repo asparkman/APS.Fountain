@@ -15,6 +15,7 @@ namespace APS.Arduino
     /// </summary>
     public interface ISerialPort
     {
+        #pragma warning disable 1591
         Stream BaseStream { get; }
         int BaudRate { get; set; }
         bool BreakState { get; set; }
@@ -60,5 +61,6 @@ namespace APS.Arduino
         void Write(byte[] buffer, int offset, int count);
         void Write(char[] buffer, int offset, int count);
         void WriteLine(string text);
+        #pragma warning restore 1591
     }
 }

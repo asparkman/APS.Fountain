@@ -8,6 +8,7 @@ namespace APS.Data.Messages.Rx
 {
     public class Ack : RxMessage
     {
+        #pragma warning disable 1591
         public Ack()
             : base()
         {
@@ -25,5 +26,6 @@ namespace APS.Data.Messages.Rx
         {
             return CloneTo(new Ack());
         }
+        #pragma warning restore 1591
     }
 }

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace APS.Arduino
 {
+    /// <summary>
+    /// Allows for communication with an Arduino device over a serial port.
+    /// </summary>
     public class Arduino
     {
         /// <summary>
@@ -30,20 +33,44 @@ namespace APS.Arduino
         /// </summary>
         private static readonly int NUM_ID_READS_PER_SEND = 3;
 
+        /// <summary>
+        /// Initializes a communication interface with the Arduino with an 
+        /// implementation of <c>ISerialPort</c>, and a possible specific value 
+        /// for <c>Random</c>.
+        /// </summary>
+        /// <param name="port">The implementation of <c>ISerialPort</c> that 
+        /// message will be sent over to communicate with the Arduino.</param>
+        /// <param name="rand">The random number generator used to generate 
+        /// <c>Identify</c> requests.</param>
         public Arduino(ISerialPort port, Random rand = null)
         {
             Rand = rand ?? new Random();
             Port = port;
-            KeepRunning = true;
             LastSentSeqNr = false;
         }
 
+        /// <summary>
+        /// The random number generator used to create <c>Identify</c> 
+        /// messages.
+        /// </summary>
         public virtual Random Rand { get; set; }
+        /// <summary>
+        /// The implementation of <c>ISerialPort</c> used to communicate with 
+        /// the Arduino.
+        /// </summary>
         public virtual ISerialPort Port { get; set; }
 
-        protected virtual bool KeepRunning { get; set; }
+        /// <summary>
+        /// The last sequence number sent to the Arduino.
+        /// </summary>
         protected virtual bool LastSentSeqNr { get; set; }
+        /// <summary>
+        /// The last message sent to the Arduino.
+        /// </summary>
         protected volatile TxMessage SentMessage;
+        /// <summary>
+        /// The next message to send to the Arduino.
+        /// </summary>
         protected volatile TxMessage NextMessageToSend;
 
         /// <summary>
@@ -255,11 +282,10 @@ namespace APS.Arduino
                         ReWrite(); // Write it.
                     sent = true; // Mark that we wrote it.
                 }
-                catch (TimeoutException ex)
+                catch (TimeoutException)
                 {
                     // If we time out, then the sent variable isn't going 
                     // to be set, and it will be resent.
-                    int i = 0;
                 }
 
                 hasWritten = true;
@@ -280,22 +306,28 @@ namespace APS.Arduino
                         LastSentSeqNr = !LastSentSeqNr; 
                     }
                 }
-                catch (TimeoutException ex)
+                catch (TimeoutException)
                 {
                     // If we time out, then the sent variable isn't going 
                     // to be set, and it will be resent.
-                    int i = 0;
                 }
             }
 
             return true;
         }
 
+        /// <summary>
+        /// Resend the <c>SentMessage</c>.
+        /// </summary>
         protected virtual void ReWrite()
         {
             Port.Write(SentMessage.Bytes, 0, SentMessage.Bytes.Length);
         }
 
+        /// <summary>
+        /// Write the <c>NextMessageToSend</c> to the Arduino, and move it to 
+        /// the <c>SentMessage</c> property.
+        /// </summary>
         protected virtual void Write()
         {
             Port.Write(NextMessageToSend.Bytes, 0, NextMessageToSend.Bytes.Length);
@@ -306,6 +338,11 @@ namespace APS.Arduino
 
         private static int _ReceiveBufferSize = Enum.GetValues(typeof(RxField)).Length;
         private byte[] _ReceiveBuffer = new byte[_ReceiveBufferSize];
+        /// <summary>
+        /// Read a single message from the Arduino, and clear the buffer if any 
+        /// other bytes remain in it.
+        /// </summary>
+        /// <returns>The first available message in the buffer.</returns>
         protected virtual RxMessage Read()
         {
             RxMessage result = null;

@@ -8,6 +8,7 @@ namespace APS.Data.Messages.Tx
 {
     public class Note : TxMessage
     {
+        #pragma warning disable 1591
         public Note()
             : base()
         {
@@ -30,5 +31,6 @@ namespace APS.Data.Messages.Tx
         {
             return CloneTo(new Note());
         }
+        #pragma warning restore 1591
     }
 }

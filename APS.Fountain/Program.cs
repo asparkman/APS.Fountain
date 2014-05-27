@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace APS.Fountain
 {
+    /// <summary>
+    /// Runs the program.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Orchestrates the communication between the Leap Motion and the Arduino.
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             using(var serialPort = new ExtSerialPort("COM4", 115200, System.IO.Ports.Parity.Odd, 8, System.IO.Ports.StopBits.One))

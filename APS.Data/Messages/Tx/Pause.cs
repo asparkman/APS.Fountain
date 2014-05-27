@@ -8,6 +8,7 @@ namespace APS.Data.Messages.Tx
 {
     public class Pause : TxMessage
     {
+        #pragma warning disable 1591
         public Pause()
             : base()
         {
@@ -29,5 +30,6 @@ namespace APS.Data.Messages.Tx
         {
             return CloneTo(new Pause());
         }
+        #pragma warning restore 1591
     }
 }
