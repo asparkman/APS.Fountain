@@ -66,11 +66,11 @@ namespace APS.Data
         { 
             get 
             {
-                return (byte) ((this[RxField.SIZE_SEQ] << ((byte)3)) >> ((byte)3)); 
+                return (byte)(((byte)(this[RxField.SIZE_SEQ] << ((byte)3))) >> ((byte)3)); 
             } 
             set 
             {
-                this[RxField.SIZE_SEQ] = (byte)((Size << ((byte)5)) + value); 
+                this[RxField.SIZE_SEQ] = (byte)((byte)(Size << ((byte)5)) + value); 
             } 
         }
 

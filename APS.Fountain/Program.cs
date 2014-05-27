@@ -1,31 +1,52 @@
-﻿/******************************************************************************\
-* Copyright (C) 2012-2013 Leap Motion, Inc. All rights reserved.               *
-* Leap Motion proprietary and confidential. Not for distribution.              *
-* Use subject to the terms of the Leap Motion SDK Agreement available at       *
-* https://developer.leapmotion.com/sdk_agreement, or another agreement         *
-* between Leap Motion and you, your company or other organization.             *
-\******************************************************************************/
-using System;
-using System.Threading;
+﻿using APS.Arduino;
 using Leap;
-using System.Timers;
-using APS.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace APS.Fountain
 {
-    public class Sample
+    public class Program
     {
-        public static LeapListener Listener { get; set; }
-        public static DateTime Start { get; set; }
-        public static DateTime LastStart { get; set; }
-        public static TimeSpan Max { get; set; }
-        public static TimeSpan Min { get; set; }
-
-        public static void Main()
+        static void Main(string[] args)
         {
-            using(var coord = new Coordinator())
+            using(var serialPort = new ExtSerialPort("COM4", 115200, System.IO.Ports.Parity.Odd, 8, System.IO.Ports.StopBits.One))
             {
-                coord.Run();
+                serialPort.ReadTimeout = 1000;
+                serialPort.WriteTimeout = 1000;
+                serialPort.Open();
+                var arduino = APS.Arduino.Arduino.IsArduino(serialPort);
+
+                if (arduino != null)
+                {
+                    Console.WriteLine("ARDUINO FOUND!");
+
+                    // Create a sample listener and controller
+                    var listener = new LeapListener(new LinearDistanceMotionToNotes(), arduino);
+                    var controller = new Controller();
+
+                    // Have the sample listener receive events from the controller
+                    controller.AddListener(listener);
+
+                    // Keep this process running until Enter is pressed
+                    Console.WriteLine("Press Enter to quit...");
+                    Console.ReadLine();
+
+                    // Remove the sample listener when done
+                    controller.RemoveListener(listener);
+                    controller.Dispose();
+                }
+                else
+                {
+                    Console.WriteLine("ARDUINO NOT FOUND!");
+
+                    Console.WriteLine("Press Enter to quit...");
+                    Console.ReadLine();
+                }
+
+                serialPort.Close();
             }
         }
     }

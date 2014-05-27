@@ -40,6 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arduino.cs" />
+    <Compile Include="ExtSerialPort.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ISerialPort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
