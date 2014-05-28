@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Fountain", "APS.Fountain.csproj", "{0CE686B1-6B7D-42AF-9181-D10964607052}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Fountain", "APS.Fountain\APS.Fountain.csproj", "{0CE686B1-6B7D-42AF-9181-D10964607052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data", "..\APS.Data\APS.Data.csproj", "{6DA06C45-44D0-41B7-9448-019A909D8F48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data", "APS.Data\APS.Data.csproj", "{6DA06C45-44D0-41B7-9448-019A909D8F48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data.Tests", "..\APS.Data.Tests\APS.Data.Tests.csproj", "{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Data.Tests", "APS.Data.Tests\APS.Data.Tests.csproj", "{F6556D77-47EA-4AA0-AAD6-BD6B8D06FEF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Arduino", "..\APS.Arduino\APS.Arduino.csproj", "{74E1864A-886A-406B-A552-7916A5125836}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Arduino", "APS.Arduino\APS.Arduino.csproj", "{74E1864A-886A-406B-A552-7916A5125836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Arduino.Tests", "..\APS.Arduino.Tests\APS.Arduino.Tests.csproj", "{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Arduino.Tests", "APS.Arduino.Tests\APS.Arduino.Tests.csproj", "{97A8EF36-D5D9-4CF5-B8D4-F68C27FCC607}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
