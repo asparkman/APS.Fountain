@@ -8,9 +8,17 @@ using System.Threading.Tasks;
 
 namespace APS.Data.Tests.Messages.Tx
 {
+    /// <summary>
+    /// Holds unit tests for <c>Note</c> transfer messages.
+    /// </summary>
     [TestFixture]
     public class NoteTests : TxMessageTests<Note>
     {
+        /// <summary>
+        /// Iterates through common changes in information bytes.
+        /// </summary>
+        /// <returns>A enumerable that changes an information byte singularly 
+        /// for each custom information byte.</returns>
         public override IEnumerable<Note> IterareThroughChanges(Note obj)
         {
             var target = (Note) obj.Clone();
@@ -43,6 +51,11 @@ namespace APS.Data.Tests.Messages.Tx
             yield break;
         }
 
+        /// <summary>
+        /// Iterates along side <c>IterateThroughCommonChanges</c>, so to 
+        /// specify what raw byte field changed.
+        /// </summary>
+        /// <returns>The raw byte field that changed.</returns>
         public override IEnumerable<TxField> FieldThatChanged()
         {
             var target = new Identify();
@@ -59,6 +72,10 @@ namespace APS.Data.Tests.Messages.Tx
             yield break;
         }
 
+        /// <summary>
+        /// Tests that escaping transfer messages is done through the 
+        /// assignment of the raw bytes.
+        /// </summary>
         [Test]
         public void Escaping_Tx()
         {
@@ -76,12 +93,25 @@ namespace APS.Data.Tests.Messages.Tx
             TestField(TxField.STOP, original, false);
         }
 
+        /// <summary>
+        /// Helper method for <c>Escaping_Rx</c>.  Used to help test every 
+        /// possible field.
+        /// </summary>
+        /// <param name="field">The field to test.</param>
+        /// <param name="original">The transfer message to test.</param>
+        /// <param name="expectEscaped">Whether escaping will be expected.</param>
         public void TestField(TxField field, Note original, bool expectEscaped)
         {
             ZeroTest(field, original);
             EscapeTest(field, original, expectEscaped);
         }
 
+        /// <summary>
+        /// Makes sure that the field will be returned properly when a 
+        /// non-escape byte, 0, is assigned to it.
+        /// </summary>
+        /// <param name="field">The field to test.</param>
+        /// <param name="original">The transfer message to test.</param>
         public void ZeroTest(TxField field, Note original)
         {
             var target = (Note)original.Clone();
@@ -89,6 +119,14 @@ namespace APS.Data.Tests.Messages.Tx
             Assert.AreEqual(0, target.Bytes[(int)field]);
         }
 
+        /// <summary>
+        /// Makes sure that the field will be stored as escaped or not 
+        /// escaped.  The test is performed for all escape characters.
+        /// </summary>
+        /// <param name="field">The field to test.</param>
+        /// <param name="original">The transfer message to test.</param>
+        /// <param name="expectEscaped">Whether to expect it to be stored as 
+        /// escaped.</param>
         public void EscapeTest(TxField field, Note original, bool expectEscaped)
         {
             var target = (Note)original.Clone();

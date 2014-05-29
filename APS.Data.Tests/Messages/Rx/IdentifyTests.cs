@@ -8,9 +8,17 @@ using System.Threading.Tasks;
 
 namespace APS.Data.Tests.Messages.Rx
 {
+    /// <summary>
+    /// Holds unit tests for <c>Identify</c> receive messages.
+    /// </summary>
     [TestFixture]
     public class IdentifyTests : RxMessageTests<Identify>
     {
+        /// <summary>
+        /// Iterates through common changes in information bytes.
+        /// </summary>
+        /// <returns>A enumerable that changes an information byte singularly 
+        /// for each custom information byte.</returns>
         public override IEnumerable<Identify> IterareThroughChanges(Identify obj)
         {
             var target = (Identify) obj.Clone();
@@ -32,6 +40,11 @@ namespace APS.Data.Tests.Messages.Rx
             yield break;
         }
 
+        /// <summary>
+        /// Iterates along side <c>IterateThroughCommonChanges</c>, so to 
+        /// specify what raw byte field changed.
+        /// </summary>
+        /// <returns>The raw byte field that changed.</returns>
         public override IEnumerable<RxField> FieldThatChanged()
         {
             var target = new Identify();

@@ -8,9 +8,17 @@ using System.Threading.Tasks;
 
 namespace APS.Data.Tests.Messages.Tx
 {
+    /// <summary>
+    /// Holds unit tests for <c>Pause</c> transfer messages.
+    /// </summary>
     [TestFixture]
     public class PauseTests : TxMessageTests<Pause>
     {
+        /// <summary>
+        /// Iterates through common changes in information bytes.
+        /// </summary>
+        /// <returns>A enumerable that changes an information byte singularly 
+        /// for each custom information byte.</returns>
         public override IEnumerable<Pause> IterareThroughChanges(Pause obj)
         {
             var target = (Pause) obj.Clone();
@@ -37,6 +45,11 @@ namespace APS.Data.Tests.Messages.Tx
             yield break;
         }
 
+        /// <summary>
+        /// Iterates along side <c>IterateThroughCommonChanges</c>, so to 
+        /// specify what raw byte field changed.
+        /// </summary>
+        /// <returns>The raw byte field that changed.</returns>
         public override IEnumerable<TxField> FieldThatChanged()
         {
             var target = new Identify();

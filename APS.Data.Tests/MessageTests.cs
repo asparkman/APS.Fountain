@@ -8,19 +8,59 @@ using System.Threading.Tasks;
 
 namespace APS.Data.Tests
 {
+    /// <summary>
+    /// Holds common tests and testing functionality for all 
+    /// <c>Message&lt;TTypeEnum, TFieldEnum&gt;</c> classes.
+    /// </summary>
+    /// <typeparam name="TTypeClass">The message class to be tested.</typeparam>
+    /// <typeparam name="TTypeEnum">The message class's enumeration of types.</typeparam>
+    /// <typeparam name="TFieldEnum">The message class's enumeration of fields.</typeparam>
     public abstract class MessageTests<TTypeClass, TTypeEnum, TFieldEnum>
         where TTypeClass : Message<TTypeEnum, TFieldEnum>, new()
         where TTypeEnum : struct, IConvertible
         where TFieldEnum : struct, IConvertible
     {
+        /// <summary>
+        /// Common bytes used to help generate the 
+        /// <c>IterateThroughCommonChanges</c>, and 
+        /// <c>IterareThroughChanges</c> enumerables.
+        /// </summary>
         public static readonly byte[] BYTES = new byte[] { 1, 0, 254, 255 };
 
+        /// <summary>
+        /// Iterates though changes common to all <c>Message</c> types.  Each 
+        /// new object returned is different by one field from the last.
+        /// </summary>
+        /// <returns>A new object that is exactly the same as the last one, 
+        /// except for one byte is different.</returns>
         public abstract IEnumerable<TTypeClass> IterateThroughCommonChanges();
+        /// <summary>
+        /// Iterates through each field that was changed by 
+        /// <c>IterateThroughCommonChanges</c>.
+        /// </summary>
+        /// <returns>The field that is different from the last one for the 
+        /// object returned by <c>IterateThroughCommonChanges</c>.</returns>
         public abstract IEnumerable<TFieldEnum> CommonFieldThatChanged();
 
+        /// <summary>
+        /// Iterates though changes specific to all this TTypeClass.  Each new 
+        /// object returned is different by one field from the last.
+        /// </summary>
+        /// <returns>A new object that is exactly the same as the last one, 
+        /// except for one byte is different.</returns>
         public abstract IEnumerable<TTypeClass> IterareThroughChanges(TTypeClass start);
+        /// <summary>
+        /// Iterates through each field that was changed by 
+        /// <c>IterareThroughChanges</c>.
+        /// </summary>
+        /// <returns>The field that is different from the last one for the 
+        /// object returned by <c>IterareThroughChanges</c>.</returns>
         public abstract IEnumerable<TFieldEnum> FieldThatChanged();
 
+        /// <summary>
+        /// Makes sure that the <c>Type</c> property of the <c>Message</c> 
+        /// class matches its class name.
+        /// </summary>
         [Test]
         public void MessageType_MatchesClassName()
         {
@@ -30,6 +70,17 @@ namespace APS.Data.Tests
             Assert.AreEqual(typeClassName, typeEnumName);
         }
 
+        /// <summary>
+        /// Makes sure that ever <c>Message</c> correctly stores each property 
+        /// according to its message layout.
+        /// 
+        /// It does this by using the overriden values returned by the 
+        /// following methods.
+        /// <c>IterateThroughCommonChanges</c>
+        /// <c>CommonFieldThatChanged</c>
+        /// <c>IterareThroughChanges(TTypeClass)</c>
+        /// <c>FieldThatChanged</c>
+        /// </summary>
         [Test]
         public void AssertCorrectField()
         {

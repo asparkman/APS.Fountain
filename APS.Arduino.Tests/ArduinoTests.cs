@@ -10,9 +10,16 @@ using System.Threading.Tasks;
 
 namespace APS.Arduino.Tests
 {
+    /// <summary>
+    /// Tests the communication protocol with the Arduino.
+    /// </summary>
     [TestFixture]
     public class ArduinoTests
     {
+        /// <summary>
+        /// Tries to identify the Arduino, and ensures the identification can 
+        /// be repeated more than once in the same execution.
+        /// </summary>
         [Test]
         public void TryIdentify()
         {
@@ -36,6 +43,9 @@ namespace APS.Arduino.Tests
                 serialPort.Close();
             }
         }
+        /// <summary>
+        /// Tries to send to the Arduino.
+        /// </summary>
         [Test]
         public async void TrySending()
         {
@@ -64,6 +74,9 @@ namespace APS.Arduino.Tests
             }
 
         }
+        /// <summary>
+        /// Performs load testing on the Arduino.
+        /// </summary>
         [Test]
         public async void LoadTests()
         {

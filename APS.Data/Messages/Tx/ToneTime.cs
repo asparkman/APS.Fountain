@@ -6,22 +6,42 @@ using System.Threading.Tasks;
 
 namespace APS.Data.Messages.Tx
 {
+    /// <summary>
+    /// Represents the amount of time a note should be played.
+    /// </summary>
     public class ToneTime : TxMessage
     {
-        #pragma warning disable 1591
+        /// <summary>
+        /// Creates a bare-bone message of the <c>ToneTime</c> type.
+        /// </summary>
         public ToneTime()
             : base()
         {
         }
 
+        /// <summary>
+        /// Creates an object that represents a <c>ToneTime</c> message from 
+        /// raw bytes.
+        /// </summary>
+        /// <param name="vals">Raw bytes representing a <c>ToneTime</c> 
+        /// message.</param>
         public ToneTime(byte[] vals)
             : base(vals)
         {
         }
 
+        /// <summary>
+        /// The transfer message type.
+        /// </summary>
         public override TxType Type { get { return TxType.TONE_TIME; } }
+        /// <summary>
+        /// The number of information bytes that the transfer message uses.
+        /// </summary>
         public override byte Size { get { return 3; } }
 
+        /// <summary>
+        /// The number of milliseconds each note should be played.
+        /// </summary>
         public UInt16 Milliseconds
         {
             get
@@ -41,10 +61,13 @@ namespace APS.Data.Messages.Tx
             }
         }
 
+        /// <summary>
+        /// Creates a clone of this transfer message.
+        /// </summary>
+        /// <returns>An exact copy of the transfer message.</returns>
         public override object Clone()
         {
             return CloneTo(new ToneTime());
         }
-        #pragma warning restore 1591
     }
 }
